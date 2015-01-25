@@ -21,11 +21,17 @@ makeCacheMatrix <- function(x = matrix()) {
       message(y, " is not a matrix. Instead it is a ", class(y), ". Please try again.")
     }
     else {
-      # Otherwise, assign the given matrix to 'x'
-      x <<- y
-      
-      # And set the mean 'm' in the upper environment to 'NULL'
-      m <<- NULL
+      # Otherwise, first, compare the matrices
+      if (dim(x) == dim(y) && all(x == y)) {
+        message("Matrix already exists")
+      }
+      else {
+        # If they are not equal, assign the given matrix to 'x'
+        x <<- y
+        
+        # And set the mean 'm' in the upper environment to 'NULL'
+        m <<- NULL
+      }
     }
   }
   
